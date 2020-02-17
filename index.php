@@ -48,7 +48,7 @@
 					$fName = $row['name'];
 					$lName = $row['lastName'];
 					$insert = mysqli_query($con, "UPDATE User SET lastLogin = '" . $date . "' WHERE id='" . $username . "'");   
-					echo '<script>alert(\'Bienvenido '. $fName .' '. $lName . '\'); window.location=\'window.location.url' + 'home.php\'</script>';    
+					echo '<script>alert(\'Bienvenido '. $fName .' '. $lName . '\'); window.location=\'home.php\'</script>';    
 				}
 				else{
 					echo 'Invalid Username and Password Combination';
