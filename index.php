@@ -47,8 +47,8 @@
 				if ($num_row > 0) {			
 					$fName = $row['name'];
 					$lName = $row['lastName'];
-					$insert = mysqli_query($con, "UPDATE User SET lastLogin = '" . $date . "' WHERE id='" . $username . "'");
-					echo '<script>alert(\'Bienvenido '. $fName .' '. $lName . '\'); window.location=\'http://cun-atm-app.eu5.net/home.php\'</script>';    
+					$insert = mysqli_query($con, "UPDATE User SET lastLogin = '" . $date . "' WHERE id='" . $username . "'");   
+					echo '<script>alert(\'Bienvenido '. $fName .' '. $lName . '\'); window.location=\'window.location.url' + 'home.php\'</script>';    
 				}
 				else{
 					echo 'Invalid Username and Password Combination';
