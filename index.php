@@ -23,11 +23,12 @@
     </div>
   </form>
   <?php
-	$con = mysqli_connect("37.59.55.185","20YF07FNF8","VPeiydCL7l", "20YF07FNF8");
+	$con = mysqli_connect("sql9.freesqldatabase","sql9323552","zUV6UapIAN", "sql9323552");
 	//$con = mysqli_connect("remotemysql.com","20YF07FNF8","VPeiydCL7l", "20YF07FNF8");
 	// Check connection
 	if (mysqli_connect_errno()){
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	  mysqli_close($con);
 	}
 	else{
 		echo "<h5 class=\"text-center\"><i>Connected</i></h5><br/>";
@@ -39,6 +40,7 @@
 			$query = mysqli_query($con, "SELECT * FROM User WHERE id='$username' AND pwd='$password'");
 			if(!$query){
 				echo mysqli_error($con);
+				mysqli_close($con);
 			}else{		
 				$row = mysqli_fetch_array($query);
 				$num_row = mysqli_num_rows($query);
@@ -48,16 +50,19 @@
 					$fName = $row['name'];
 					$lName = $row['lastName'];
 					$insert = mysqli_query($con, "UPDATE User SET lastLogin = '" . $date . "' WHERE id='" . $username . "'");   
+					mysqli_close($con);
 					echo '<script>alert(\'Bienvenido '. $fName .' '. $lName . '\'); window.location=\'home.php\'</script>';    
 				}
 				else{
 					echo 'Invalid Username and Password Combination';
+					mysqli_close($con);
 				}
 			}
+			mysqli_close($con);
 		}
 
 	}
-	mysqli_close($con);
+	
 	
   ?>
   <div class="reminder">

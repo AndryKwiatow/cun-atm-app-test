@@ -38,11 +38,12 @@
  
  
 <?php
-    $con = mysqli_connect("37.59.55.185","20YF07FNF8","VPeiydCL7l", "20YF07FNF8");
+    $con = mysqli_connect("sql9.freesqldatabase","sql9323552","zUV6UapIAN", "sql9323552");
     //$con = mysqli_connect("remotemysql.com","20YF07FNF8","VPeiydCL7l", "20YF07FNF8");
 	// Check connection
 	if (mysqli_connect_errno()){
-	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      mysqli_close($con);
 	}
 	else{
 		echo "Connected <br/>";
@@ -58,7 +59,8 @@
             $query = mysqli_query($con, "SELECT id FROM User WHERE id='$id'");
 
 			if(!$query){
-				echo mysqli_error($con);
+                echo mysqli_error($con);
+                mysqli_close($con);
 			}else{		
                 $row = mysqli_fetch_array($query);
                 $num_row = mysqli_num_rows($query);
@@ -69,22 +71,23 @@
 
                     if(!$insert){
                         echo "Error en inserción " . mysqli_error($con);  
+                        mysqli_close($con);
                     }else{
                         //Redirects new user
+                        mysqli_close($con);
                         echo '<script>alert(\'Usuario'. $fName .' '. $lName . ' fue creado exitosamente\'); window.location=\'http://cun-atm-app.eu5.net\'</script>';    
                     }
                     exit;
                 }			
                 else{
                     //Redirects existing user
+                    mysqli_close($con);
                     echo '<script>alert(\'User: '. $id . ' ya existe en base de datos\'); window.location=\'http://cun-atm-app.eu5.net/\'</script>';
                     exit;
                 }
             }
 		}
-
-	}
-	mysqli_close($con);
+	}	
     ?>
 </body>
 
