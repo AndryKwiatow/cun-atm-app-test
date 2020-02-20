@@ -38,7 +38,7 @@
  
  
 <?php
-    $con = mysqli_connect("sql9.freesqldatabase","sql9323552","zUV6UapIAN", "sql9323552");
+    $con = mysqli_connect("sql9.freesqldatabase.com","sql9323552","zUV6UapIAN", "sql9323552");
     //$con = mysqli_connect("remotemysql.com","20YF07FNF8","VPeiydCL7l", "20YF07FNF8");
 	// Check connection
 	if (mysqli_connect_errno()){
